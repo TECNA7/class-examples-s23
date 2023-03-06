@@ -5,6 +5,26 @@
 
 public class ArrayUtils {
 
+  public static double[] extendArray(double[] haystack) {
+     //1 create a bigger array
+     int len = haystack.length; 
+     double[] bigHayStack = new double[len*2];
+    
+    // copy over the values
+    for (int i = 0; i < haystack.length; i++) {
+     bigHayStack[i] = haystack[i];
+   }
+   return bigHayStack;
+  }
+
+  public static double totalSum(double[] haystack) {
+    double sum = 0;
+    for (int i = 0; i < haystack.length; i++ ) {
+      sum += haystack[i];
+    }
+    return sum;
+  }
+
   /** 
     Print out the contents of a list
     @param - haystack (an array of integers)
