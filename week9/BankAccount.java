@@ -5,7 +5,7 @@
 public class BankAccount {
 
   public String name; 
-  public double balance;
+  private double balance;
 
   //empty constructor 
   public BankAccount() {
@@ -13,11 +13,14 @@ public class BankAccount {
      balance = 1.0;
   }
 
-  // new constructor
-  public BankAccount(String newName, double startBalance) {
-     // in demo, change the name of the parameters to be name and balance
-     name = newName;
-     balance = startBalance;
+  // value constructor
+  public BankAccount(String name, double balance) {
+    this.name = name;
+    this.balance = balance;
+
+
+     //name = newName;
+     //balance = startBalance;
   }
  
  
@@ -63,6 +66,29 @@ public class BankAccount {
     return balance;
   }
 
+  //transfering
+  // account rransfering from
+  // account transfering to
+  //amount transfering
+  public static boolean transfer(BankAccount sender,
+                          BankAccount recipient, 
+                          double amount) {
+    return sender.transferTo(recipient, amount);
+  }
+
+  //transferTo
+  public boolean transferTo(BankAccount recipient, double amount) {
+    // subtract from the balance
+    if (amount > balance) {
+      System.out.printf("%f is too much money to trsansfer\n", amount);
+      return false;
+    } 
+    balance -= amount;
+    //add money to thje recepient
+    recipient.deposit(amount); // depost the money into the receipient
+    return true;
+  }
+
   public static void main(String[] args) {
     BankAccount emptyAccount = new BankAccount();
     System.out.println(emptyAccount);
@@ -72,8 +98,23 @@ public class BankAccount {
     emptyAccount.deposit(1000);
     emptyAccount.withdraw(10);
 
-
     BankAccount tuitionAccount = new BankAccount("tuition", 60000.0);
+    System.out.println("This is the account for tuition");
+    System.out.println(tuitionAccount);
+
+   System.out.println("Transfering money 1");
+   System.out.println(emptyAccount);
+   System.out.println(emptyAccount.transferTo(tuitionAccount, 10));
+   System.out.println(emptyAccount);
+
+   System.out.println("Transfering money 2");
+   System.out.println(tuitionAccount);
+   System.out.println(tuitionAccount.transferTo(emptyAccount, 10));
+   System.out.println(tuitionAccount);
+
+
+   System.out.println("Transfering money 3");
+   System.out.println(transfer(emptyAccount, tuitionAccount, 100000));
   }
 
 }
