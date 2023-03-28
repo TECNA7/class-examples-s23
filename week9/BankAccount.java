@@ -4,40 +4,46 @@
 
 public class BankAccount {
 
-  public String name; 
+  private String name; 
   private double balance;
 
-  //empty constructor 
+  /**
+   * empty constructor 
+   */
   public BankAccount() {
      name = "";
      balance = 1.0;
   }
 
   // value constructor
+  /**
+   * @param name - name of new account
+   * @param balance - starting balance
+   */
   public BankAccount(String name, double balance) {
     this.name = name;
     this.balance = balance;
-
-
-     //name = newName;
-     //balance = startBalance;
   }
  
  
-  //accessors/getters
+  /**
+   * @return the BankAccount's name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * @return the BankAccount's balance
+   */
   public double getBalance() {
     return balance;
   }
 
-  // mutators/setters
-  // a method to assign a value to the account's name
+  /**
+   * @param accountName - update the name of the Bank Account
+   */
   public void setName(String accountName) {
-    // what the heck? what name should I give to it? -- thats the job 
-    // of the parameter.
     name = accountName;
   } 
 
@@ -45,21 +51,19 @@ public class BankAccount {
     return name + " has " + balance + " in their account";
   }
 
-
-  // depoist money
-  // withdraw money
+  /**
+   * @param moreMoney - amount to add to the balance
+   * @return - the new updated balance after the deposit
+   */
   public double deposit(double moreMoney) {
     balance += moreMoney;
-    return balance; //todo for adam: ranem balance to balance;
+    return balance; 
   }
 
 
   /**
-  one sentence description
-
-  @param how muhc money to withdraw
-  @retrun the new updated balance after the withdrawal
-
+  * @param how muhc money to withdraw
+  * @retrun the new updated balance after the withdrawal
   */
   public double withdraw(double amountToWithdraw) {
     balance -= amountToWithdraw;
@@ -70,14 +74,26 @@ public class BankAccount {
   // account rransfering from
   // account transfering to
   //amount transfering
+  /**
+   * @param sender - the BankAccount to withdraw from
+   * @param recipient - the BankAccount to deposit
+   * @param amount - the amount to transfer
+   * @return - boolean indicating if the transfer was successful
+   */
   public static boolean transfer(BankAccount sender,
                           BankAccount recipient, 
                           double amount) {
     return sender.transferTo(recipient, amount);
   }
 
-  //transferTo
-  public boolean transferTo(BankAccount recipient, double amount) {
+  /**
+   * Helper instance method for transfering money to an account
+   * @param recipient - the BankAccount receiveing the money
+   * @param amount - the amount of to transfer
+   * @return boolean indicating if the transfer was successful
+   *        false if the current Bankaccount does not have enough funds
+   */
+  private boolean transferTo(BankAccount recipient, double amount) {
     // subtract from the balance
     if (amount > balance) {
       System.out.printf("%f is too much money to trsansfer\n", amount);
