@@ -12,7 +12,7 @@ public class Zoo {
    zoo[0] = turt;
    zoo[1] = snoopy;
 
-  " ".length();
+  //" ".length();
   for (int i = 0; i < zoo.length; i++) {
     System.out.println(zoo[i]);
   }
